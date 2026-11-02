@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vendredi 13 Ron Abuelo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Dégustation Ron Abuelo le vendredi 13 novembre dès 19 h au 40 rue de Bras à Caen : quatre rhums du Panama, animée par Melvyn Le Brumant.">
+<script>document.documentElement.classList.add('js');document.documentElement.lang='fr'</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Alfa+Slab+One&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap">
+<style>
+/* Concept : la page vieillit comme le rhum. Le fond passe de la moutarde du flyer au mahogany du 15 ans au fil du scroll. */
+:root{
+  --bg:#DFB548; --fg:#15120C; --red:#A81E16; --disc:#FBF3E2;
+  --display:'Anton','Arial Narrow',Impact,sans-serif;
+  --slab:'Alfa Slab One',Rockwell,Georgia,serif;
+  --body:'DM Sans','Segoe UI',system-ui,sans-serif;
+  --ease:cubic-bezier(.2,.8,.2,1);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 17px/1.55 var(--body);overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3,p{margin:0}
+:focus-visible{outline:3px solid currentColor;outline-offset:3px}
+html:not(.js) section{background:var(--sbg);color:var(--sfg)}
+#dust{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+main,footer{position:relative;z-index:1}
+.wrap{max-width:1180px;margin:auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+
+/* Hero */
+.hero{padding-block:clamp(28px,5vw,56px) 0;overflow:hidden}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.kicker{font:400 clamp(26px,3.6vw,44px)/1 var(--display);text-transform:uppercase;letter-spacing:.01em}
+.brand{font:400 clamp(38px,7.4vw,92px)/1.05 var(--slab);text-transform:uppercase;letter-spacing:.01em}
+.logo{width:clamp(72px,11vw,136px);height:auto;flex:none;animation:spin 1.4s var(--ease) both}
+@keyframes spin{from{transform:rotate(-140deg) scale(.5);opacity:0}}
+.big{display:flex;align-items:flex-end;gap:.14em;font:400 clamp(70px,18.5vw,236px)/1 var(--display);text-transform:uppercase;margin-top:.08em}
+.big .ch{display:inline-block;animation:slam .9s var(--ease) both;animation-delay:calc(var(--i)*55ms + 150ms)}
+@keyframes slam{from{transform:translateY(70%) scaleY(1.4);opacity:0}}
+.thirteen{color:var(--red);display:inline-block;transform-origin:50% 100%;animation:swing 1.5s .8s var(--ease) both}
+@keyframes swing{0%{transform:rotate(26deg) translateY(-30%);opacity:0}55%{transform:rotate(-6deg)}78%{transform:rotate(2.5deg)}100%{transform:none}}
+.when{font:400 clamp(30px,6vw,74px)/1.1 var(--display);text-transform:uppercase;animation:rise 1s .7s var(--ease) both}
+@keyframes rise{from{transform:translateY(40px);opacity:0}}
+.line-up{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(8px,3vw,44px);margin-top:clamp(28px,5vw,56px)}
+.line-up a{text-decoration:none;text-align:center;display:block;animation:rise 1.2s var(--ease) both;animation-delay:calc(var(--i)*130ms + 900ms)}
+.line-up img{margin:auto;max-height:clamp(210px,52vw,560px);transition:transform .6s var(--ease);transform:translate3d(calc(var(--mx,0)*var(--d)*1px),0,0)}
+.line-up a:hover img,.line-up a:focus-visible img{transform:translateY(-14px) rotate(-3deg)}
+.line-up b{display:block;font:400 clamp(20px,3.6vw,44px)/1.1 var(--display);text-transform:uppercase;margin-top:14px}
+.line-up small{display:block;min-height:1.4em;font:600 clamp(9px,1.5vw,16px)/1.4 var(--body);letter-spacing:.1em;text-transform:uppercase}
+
+/* Bandeau */
+.ticker{overflow:hidden;background:var(--fg);color:var(--bg);margin-top:clamp(28px,5vw,56px);transform:rotate(-1.2deg) scale(1.03);padding-block:12px}
+.ticker div{display:flex;width:max-content;gap:2.2em;font:400 clamp(18px,2.4vw,28px)/1.2 var(--display);text-transform:uppercase;white-space:nowrap;animation:slide 34s linear infinite}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* Fiche rhum */
+.rum{padding-block:clamp(64px,10vw,130px);overflow:hidden;--ac:var(--red)}
+.rum-head{text-align:center;max-width:680px;margin:auto}
+.rum-head .eyebrow{font:600 13px/1.4 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--ac)}
+.rum-head h2{font:400 clamp(44px,7vw,84px)/1.08 var(--display);text-transform:uppercase;margin-top:8px;text-wrap:balance}
+.rule{height:2px;width:min(300px,60%);background:currentColor;margin:16px auto 18px;transform-origin:center}
+.rum-head p{max-width:58ch;margin:auto}
+.stage{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(190px,330px) minmax(0,1fr);grid-template-rows:auto auto;grid-template-areas:"tl bottle tr" "bl bottle br";gap:clamp(24px,5vw,72px) clamp(40px,7vw,110px);align-items:center;margin-top:clamp(28px,4vw,48px)}
+.bottle{grid-area:bottle;position:relative;display:grid;place-items:center}
+.ghost{position:absolute;top:50%;left:50%;font:400 clamp(240px,34vw,470px)/1 var(--display);color:var(--ac);opacity:.13;white-space:nowrap;pointer-events:none;transform:translate(-50%,calc(-50% + var(--gy,0px)))}
+.glow{position:absolute;inset:6% -30%;border-radius:50%;background:radial-gradient(closest-side,var(--ac),transparent);opacity:.38;animation:breathe 6s ease-in-out infinite}
+@keyframes breathe{50%{transform:scale(1.12);opacity:.22}}
+.tilt{position:relative;transform:translateY(var(--by,0px)) rotate(calc(var(--br,0deg) + var(--hover,0deg))) scale(var(--bs,1));transition:--hover .6s}
+.float{animation:float 7s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-14px)}}
+.bottle img{max-height:min(74vh,640px);filter:drop-shadow(0 26px 26px rgba(10,5,0,.32))}
+.age{grid-column:1/-1;text-align:center;font:400 clamp(34px,5vw,56px)/1.1 var(--display);text-transform:uppercase;margin-top:clamp(24px,4vw,44px)}
+.age span{display:block;font:600 13px/1.5 var(--body);letter-spacing:.16em;color:var(--ac)}
+
+/* Arômes */
+.aroma{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;cursor:default}
+.tl{grid-area:tl}.tr{grid-area:tr}.bl{grid-area:bl}.br{grid-area:br}
+.pic{width:clamp(96px,13vw,158px);aspect-ratio:1;transform:translateY(var(--py,0px))}
+.disc{position:relative;width:100%;height:100%;border-radius:50%;background:var(--disc);box-shadow:0 12px 26px rgba(20,10,0,.16);animation:bob 6s ease-in-out infinite;animation-delay:calc(var(--i)*-1.4s);transition:transform .5s var(--ease)}
+.disc svg{position:absolute;inset:13%;width:74%;height:74%;overflow:visible}
+@keyframes bob{50%{translate:0 -8px}}
+.aroma:hover .disc{transform:scale(1.13) rotate(-7deg)}
+.aroma h3{font:400 clamp(20px,2.3vw,30px)/1.1 var(--display);text-transform:uppercase;letter-spacing:.02em}
+.aroma p{font-size:15px;line-height:1.35;max-width:22ch;opacity:.82}
+.arrow{position:absolute;width:clamp(58px,8vw,112px);height:auto;overflow:visible;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;transition:scale .4s var(--ease)}
+.tl .arrow{right:calc(clamp(40px,7vw,110px)*-.72);top:18%}
+.tr .arrow{left:calc(clamp(40px,7vw,110px)*-.72);top:18%;transform:scaleX(-1)}
+.bl .arrow{right:calc(clamp(40px,7vw,110px)*-.72);bottom:30%;transform:scaleY(-1)}
+.br .arrow{left:calc(clamp(40px,7vw,110px)*-.72);bottom:30%;transform:scale(-1)}
+.aroma:hover .arrow{scale:1.14}
+
+/* Apparitions : tout reste visible sans JS ni si l'animation est désactivée */
+.js .rv{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease),transform 1s var(--ease);transition-delay:calc(var(--i,0)*120ms)}
+.js .rv.in{opacity:1;transform:none}
+.js .aroma.rv{transform:translateY(30px) scale(.86)}
+.js .aroma.rv.in{transform:none}
+.js .rule.rv{transform:scaleX(0);opacity:1}
+.js .rule.rv.in{transform:none}
+.js .rv .arrow path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1s var(--ease);transition-delay:calc(var(--i,0)*120ms + .45s)}
+.js .rv .arrow path+path{transition-duration:.3s;transition-delay:calc(var(--i,0)*120ms + 1.25s)}
+.js .rv.in .arrow path{stroke-dashoffset:0}
+
+/* Infos pratiques */
+.info{padding-block:clamp(64px,10vw,120px) clamp(40px,6vw,64px)}
+.info h2{font:400 clamp(52px,11vw,136px)/1.02 var(--display);text-transform:uppercase}
+.info h2 em{font-style:normal;color:var(--red)}
+.count{display:flex;flex-wrap:wrap;gap:clamp(16px,4vw,48px);margin-top:26px;font-variant-numeric:tabular-nums}
+.count div{font:400 clamp(44px,7vw,84px)/1 var(--display);min-width:1.5em}
+.count span{display:block;font:600 12px/1.8 var(--body);letter-spacing:.14em;text-transform:uppercase}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:30px clamp(24px,4vw,56px);margin-top:clamp(36px,5vw,60px);border-top:3px solid var(--fg);padding-top:26px}
+.facts h3{font:600 13px/1.4 var(--body);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
+.facts p{font:400 clamp(22px,2.5vw,30px)/1.2 var(--display)}
+.facts small{display:block;font:400 15px/1.4 var(--body);margin-top:6px}
+.res{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.res span{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;min-width:0;overflow-wrap:anywhere}
+.res a{font:400 clamp(21px,2.2vw,27px)/1.2 var(--display);text-decoration:none;background:linear-gradient(currentColor,currentColor) 0 100%/0 2px no-repeat;transition:background-size .4s var(--ease)}
+.res a:hover{background-size:100% 2px}
+button{font:600 12px/1 var(--body);letter-spacing:.06em;padding:7px 11px;border:1.5px solid var(--fg);border-radius:99px;background:none;color:inherit;cursor:pointer}
+button:hover{background:var(--fg);color:var(--bg)}
+footer{padding-block:0 28px;font-size:14px}
+
+/* Jauge de vieillissement */
+.gauge{position:fixed;z-index:5;right:max(18px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:26px;padding-right:14px;font:400 15px/1 var(--display)}
+.gauge::before,.gauge i{content:"";position:absolute;right:0;top:0;width:3px;border-radius:3px}
+.gauge::before{height:100%;background:currentColor;opacity:.22}
+.gauge i{height:100%;background:currentColor;transform-origin:top;transform:scaleY(var(--fill,0))}
+.gauge a{text-decoration:none;text-align:right;opacity:.5;transition:opacity .3s,transform .4s var(--ease)}
+.gauge a.on,.gauge a:hover{opacity:1;transform:scale(1.35);transform-origin:right}
+
+@media (max-width:1240px){.gauge{display:none}}
+@media (max-width:720px){
+  .stage{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:"tl tr" "bottle bottle" "bl br";gap:44px 14px}
+  .bottle img{max-height:300px}
+  .tl .arrow,.tr .arrow{top:auto;bottom:-44px;width:54px}
+  .tl .arrow{right:6px}.tr .arrow{left:6px}
+  .bl .arrow,.br .arrow{bottom:auto;top:-40px;width:54px}
+  .bl .arrow{right:6px}.br .arrow{left:6px}
+  .glow{inset:4% 4%}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .rv,.js .aroma.rv,.js .rule.rv{opacity:1;transform:none}
+  .js .rv .arrow path{stroke-dashoffset:0}
+  #dust{display:none}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="caramel" viewBox="0 0 120 120">
+      <path d="M22 34q38-16 76 0l-4 34q-6 24-12 6-4-8-8 0-5 28-13 6-3-8-8-2-8 12-12-4-7 8-12-6z" fill="#C97A1E"/>
+      <path d="M22 34q38-16 76 0-38 16-76 0z" fill="#E8A445"/>
+      <path d="M36 33q22-7 44-1" stroke="#FBE0A8" stroke-width="4" fill="none" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="raisins-secs" viewBox="0 0 120 120">
+      <g fill="#4A2235"><ellipse cx="40" cy="44" rx="23" ry="17" transform="rotate(-24 40 44)"/><ellipse cx="82" cy="50" rx="21" ry="16" transform="rotate(22 82 50)"/><ellipse cx="60" cy="82" rx="25" ry="18"/></g>
+      <g fill="none" stroke="#7D4A5F" stroke-width="3" stroke-linecap="round"><path d="M28 44q10-8 22-8M33 53q12-3 19-11M72 44q9 1 17 11M72 56q7 3 15 2M42 80q14-9 34-3M46 90q14 1 28-5"/></g>
+    </symbol>
+    <symbol id="vanille" viewBox="0 0 120 120">
+      <g fill="none" stroke-linecap="round"><path d="M12 106Q58 74 108 62" stroke="#3B2115" stroke-width="7"/><path d="M26 112Q70 92 112 82" stroke="#54301C" stroke-width="6"/></g>
+      <g fill="#FFF8DF" stroke="#D9C78A" stroke-width="1.5"><path d="M56 48Q42 18 58 6q14 18-2 42z"/><path d="M56 48Q84 22 98 32 86 52 56 48z"/><path d="M56 48Q86 56 88 72 66 76 56 48z"/><path d="M56 48Q44 76 26 72 28 54 56 48z"/><path d="M56 48Q26 42 18 26q24-6 38 22z"/></g>
+      <circle cx="56" cy="48" r="8" fill="#F1C63C"/>
+    </symbol>
+    <symbol id="cannelle" viewBox="0 0 120 120">
+      <g stroke-linecap="round"><path d="M20 92 88 22" stroke="#9A5526" stroke-width="20"/><path d="M38 104 104 40" stroke="#B66A30" stroke-width="20"/></g>
+      <g fill="none" stroke="#5F2F12" stroke-width="3" stroke-linecap="round"><path d="M34 76 72 37M52 90 90 52"/></g>
+      <circle cx="90" cy="20" r="10" fill="#D79A5D"/><path d="M90 15a5 5 0 1 1-5 5" fill="none" stroke="#5F2F12" stroke-width="2.5"/>
+      <circle cx="106" cy="38" r="10" fill="#E2AB70"/><path d="M106 33a5 5 0 1 1-5 5" fill="none" stroke="#5F2F12" stroke-width="2.5"/>
+    </symbol>
+    <symbol id="cacao" viewBox="0 0 120 120">
+      <path d="M60 6c26 16 34 42 30 66-3 20-16 34-30 42-14-8-27-22-30-42-4-24 4-50 30-66z" fill="#B65A1E" transform="rotate(24 60 60)"/>
+      <g fill="none" stroke="#7E3710" stroke-width="3.5" stroke-linecap="round" transform="rotate(24 60 60)"><path d="M60 12v96M44 24c-10 26-8 58 6 78M76 24c10 26 8 58-6 78"/></g>
+      <ellipse cx="28" cy="96" rx="17" ry="11" fill="#4B2510" transform="rotate(-18 28 96)"/><path d="M15 99q13-2 26-7" stroke="#8A5230" stroke-width="2.5" fill="none"/>
+    </symbol>
+    <symbol id="pruneau" viewBox="0 0 120 120">
+      <ellipse cx="46" cy="52" rx="33" ry="27" fill="#2F1524" transform="rotate(-18 46 52)"/>
+      <ellipse cx="80" cy="84" rx="27" ry="21" fill="#46203A" transform="rotate(14 80 84)"/>
+      <g fill="none" stroke="#6F4460" stroke-width="3" stroke-linecap="round"><path d="M22 54q18-20 42-15M28 66q18-1 34-15M62 82q14-8 34-3M68 94q12 1 24-6"/></g>
+    </symbol>
+    <symbol id="chene" viewBox="0 0 120 120">
+      <path d="M34 106C22 92 22 80 28 74 16 72 8 62 14 54c6-2 12 0 16 2-6-10-4-22 6-24 6 2 10 8 12 14 0-12 6-26 18-28 8 6 8 18 6 26 6-6 18-10 26-4 2 8-6 16-14 20 8 0 18 4 18 12-6 8-18 8-26 4 2 8 0 20-10 24-8-2-12-8-14-14-2 10-8 20-18 20z" fill="#C98A2C"/>
+      <path d="M26 112 86 34M46 86 30 58M56 74 46 40M66 60l26 2M58 72l26 18" fill="none" stroke="#7E4E12" stroke-width="3" stroke-linecap="round"/>
+      <path d="M90 92c10 0 16 6 16 12-1 8-8 13-16 13s-15-5-16-13c0-6 6-12 16-12z" fill="#A9742D"/><path d="M73 102c2-9 10-12 17-12s15 3 17 12c-11 3-23 3-34 0z" fill="#5E3A16"/>
+    </symbol>
+    <symbol id="orange" viewBox="0 0 120 120">
+      <circle cx="52" cy="54" r="44" fill="#EE8A1D"/><circle cx="52" cy="54" r="37" fill="#FFE2A6"/>
+      <g fill="#F7A531"><path d="M52 54 52 21a33 33 0 0 1 23 10z"/><path d="M52 54 79 37a33 33 0 0 1 6 25z"/><path d="M52 54 84 67a33 33 0 0 1-17 17z"/><path d="M52 54 60 86a33 33 0 0 1-22-1z"/><path d="M52 54 31 79a33 33 0 0 1-12-23z"/><path d="M52 54 20 47a33 33 0 0 1 10-19z"/><path d="M52 54 36 25a33 33 0 0 1 12-4z"/></g>
+      <path d="M72 112c10 2 20-2 22-10s-10-8-8-16 14-6 22-2" fill="none" stroke="#E0701A" stroke-width="7" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="fumee" viewBox="0 0 120 120">
+      <g fill="none" stroke-linecap="round"><path d="M38 112c-18-20 20-30 2-54-10-14 4-30 12-44" stroke="#8D8782" stroke-width="10"/><path d="M66 112c-16-18 18-26 4-48-8-12 2-26 14-40" stroke="#B9B2AB" stroke-width="8"/><path d="M90 110c-10-12 10-18 2-32" stroke="#6D6762" stroke-width="6"/></g>
+    </symbol>
+    <symbol id="cafe" viewBox="0 0 120 120">
+      <ellipse cx="44" cy="44" rx="30" ry="21" fill="#4A2813" transform="rotate(-34 44 44)"/><ellipse cx="80" cy="82" rx="30" ry="21" fill="#2F180B" transform="rotate(-20 80 82)"/>
+      <path d="M22 62C38 54 36 36 64 24" fill="none" stroke="#A36F45" stroke-width="3.5" stroke-linecap="round"/><path d="M53 92C68 88 76 74 108 72" fill="none" stroke="#8B5A36" stroke-width="3.5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="amande" viewBox="0 0 120 120">
+      <g fill="#C08545"><path d="M38 12C58 26 60 58 40 68 18 60 18 28 38 12z"/><path d="M86 28c16 16 14 46-6 54-20-10-16-42 6-54z" fill="#A86E33"/><path d="M50 56c18 14 18 46-2 56-22-10-18-44 2-56z" fill="#D29A59"/></g>
+      <g fill="none" stroke="#6B3F17" stroke-width="2" stroke-linecap="round"><path d="M38 22v38M30 32l2 24M46 32l-2 24M84 38l-3 36M49 68v36M41 78l2 22M57 78l-2 22"/></g>
+    </symbol>
+    <symbol id="raisin" viewBox="0 0 120 120">
+      <path d="M64 24Q88 2 108 16 104 42 72 34z" fill="#6E8A3B"/><path d="M60 26q0-14-8-22" stroke="#5A3A1A" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <g fill="#C4A23C"><circle cx="34" cy="38" r="14"/><circle cx="60" cy="38" r="14"/><circle cx="86" cy="42" r="14"/><circle cx="46" cy="60" r="14"/><circle cx="72" cy="62" r="14"/><circle cx="58" cy="84" r="14"/><circle cx="32" cy="60" r="12"/><circle cx="50" cy="104" r="11"/></g>
+      <g fill="#F2E08F"><circle cx="30" cy="33" r="3.5"/><circle cx="56" cy="33" r="3.5"/><circle cx="82" cy="37" r="3.5"/><circle cx="42" cy="55" r="3.5"/><circle cx="68" cy="57" r="3.5"/><circle cx="54" cy="79" r="3.5"/></g>
+    </symbol>
+    <symbol id="prune" viewBox="0 0 120 120">
+      <path d="M60 28c32-8 46 18 42 42-4 26-24 42-42 42S22 96 18 70c-4-24 10-50 42-42z" fill="#5B2A6E"/>
+      <path d="M60 28c-8 22-8 58 0 84" fill="none" stroke="#3E1A4E" stroke-width="3"/><path d="M34 52q-6 14-2 28" fill="none" stroke="#A67CBA" stroke-width="5" stroke-linecap="round"/>
+      <path d="M60 28q0-14 8-22" stroke="#5A3A1A" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M66 18q18-16 36-6-10 20-36 6z" fill="#6E8A3B"/>
+    </symbol>
+    <symbol id="chocolat" viewBox="0 0 120 120">
+      <path d="M20 22 82 8l18 88-40 8-8 10-8-4-12-4z" fill="#34180C"/>
+      <g fill="#50280F"><path d="m27 28 21-5 5 22-21 5z"/><path d="m54 22 21-5 5 22-21 5z"/><path d="m34 57 21-5 5 22-21 5z"/><path d="m61 51 21-5 5 22-21 5z"/></g>
+      <path d="m27 28 21-5M54 22l21-5M34 57l21-5M61 51l21-5" stroke="#8A5A36" stroke-width="2.5" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<canvas id="dust" aria-hidden="true"></canvas>
+
+<nav class="gauge" aria-label="Les quatre rhums">
+  <i></i>
+  <a href="#ans7">7</a>
+  <a href="#ans12">12</a>
+  <a href="#twooaks">XII</a>
+  <a href="#napoleon">XV</a>
+  <a href="#infos">Infos</a>
+</nav>
+
+<main>
+<section class="hero" data-bg="#DFB548" data-fg="#15120C" style="--sbg:#DFB548;--sfg:#15120C">
+  <div class="wrap">
+    <div class="hero-top">
+      <div>
+        <p class="kicker">Dégustation</p>
+        <p class="brand">Ron Abuelo</p>
+      </div>
+      <img class="logo" src="img/ldqm.png" alt="LDQM" width="500" height="500">
+    </div>
+    <h1 class="big" aria-label="Vendredi 13">
+      <span aria-hidden="true"><span class="ch" style="--i:0">V</span><span class="ch" style="--i:1">e</span><span class="ch" style="--i:2">n</span><span class="ch" style="--i:3">d</span><span class="ch" style="--i:4">r</span><span class="ch" style="--i:5">e</span><span class="ch" style="--i:6">d</span><span class="ch" style="--i:7">i</span></span>
+      <span class="thirteen" aria-hidden="true">13</span>
+    </h1>
+    <p class="when">Novembre · dès 19 h</p>
+    <div class="line-up" id="lineup">
+      <a href="#ans7" style="--i:0;--d:-14"><img src="img/abuelo-7.png" alt="Bouteille Ron Abuelo 7 ans"><b>7 ans</b><small>&nbsp;</small></a>
+      <a href="#ans12" style="--i:1;--d:9"><img src="img/abuelo-12.png" alt="Bouteille Ron Abuelo 12 ans"><b>12 ans</b><small>&nbsp;</small></a>
+      <a href="#twooaks" style="--i:2;--d:-9"><img src="img/abuelo-two-oaks.png" alt="Bouteille Ron Abuelo XII Two Oaks"><b>12 ans</b><small>Two Oaks</small></a>
+      <a href="#napoleon" style="--i:3;--d:14"><img src="img/abuelo-napoleon.png" alt="Bouteille Ron Abuelo XV Napoléon"><b>15 ans</b><small>Napoléon</small></a>
+    </div>
+  </div>
+  <div class="ticker" aria-hidden="true"><div>
+    <span>Quatre rhums du Panama</span><span>★</span><span>Animée par Melvyn Le Brumant</span><span>★</span><span>40 rue de Bras, Caen</span><span>★</span><span>Entrée 10 €</span><span>★</span>
+    <span>Quatre rhums du Panama</span><span>★</span><span>Animée par Melvyn Le Brumant</span><span>★</span><span>40 rue de Bras, Caen</span><span>★</span><span>Entrée 10 €</span><span>★</span>
+    <span>Quatre rhums du Panama</span><span>★</span><span>Animée par Melvyn Le Brumant</span><span>★</span><span>40 rue de Bras, Caen</span><span>★</span><span>Entrée 10 €</span><span>★</span>
+    <span>Quatre rhums du Panama</span><span>★</span><span>Animée par Melvyn Le Brumant</span><span>★</span><span>40 rue de Bras, Caen</span><span>★</span><span>Entrée 10 €</span><span>★</span>
+  </div></div>
+</section>
+
+<section class="rum" id="ans7" data-bg="#F0E5CF" data-fg="#24170C" style="--sbg:#F0E5CF;--sfg:#24170C;--ac:#B5641F">
+  <div class="wrap">
+    <div class="rum-head">
+      <p class="eyebrow rv">Premier verre · Añejo Reserva Superior</p>
+      <h2 class="rv">Abuelo 7 ans</h2>
+      <div class="rule rv"></div>
+      <p class="rv">Rond et gourmand, le bon point de départ pour entrer dans la maison Varela Hermanos.</p>
+    </div>
+    <div class="stage">
+      <div class="aroma tl rv" style="--i:1"><div class="pic" data-s="-.9"><div class="disc" style="--i:0"><svg role="img" aria-label=""><use href="#caramel"/></svg></div></div><h3>Caramel</h3><p>Beurré et fondant au nez</p>
+        <svg class="arrow" viewBox="0 0 100 60"><path pathLength="1" d="M4 12C35 2 72 12 90 48"/><path pathLength="1" d="M72 42l19 9 2-20"/></svg></div>
+      <div class="aroma tr rv" style="--i:2"><div class="pic" data-s="-.5"><div class="disc" style="--i:1"><svg role="img" aria-label=""><use href="#raisins-secs"/></svg></div></div><h3>Fruits secs</h3><p>Raisins et dattes</p>
+        <svg class="arrow" viewBox="0 0 100 60"><path pathLength="1" d="M4 12C35 2 72 12 90 48"/><path pathLength="1" d="M72 42l19 9 2-20"/></svg></div>
+      <div class="bottle"><div class="ghost" data-ghost style="font-size:clamp(380px,58vw,760px)">7</div><div class="glow"></div><div class="tilt" data-bottle><div class="float"><img src="img/abuelo-7.png" alt="Bouteille Ron Abuelo Añejo 7 ans" loading="lazy"></div></div></div>
+      <div class="aroma bl rv" style="--i:3"><div class="pic" data-s=".6"><div class="disc" style="--i:2"><svg role="img" aria-label=""><use href="#vanille"/></svg></div></div><h3>Vanille</h3><p>Florale en milieu de bouche</p>
+        <svg class="arrow" viewBox="0 0 100 60"><path pathLength="1" d="M4 12C35 2 72 12 90 48"/><path pathLength="1" d="M72 42l19 9 2-20"/></svg></div>
+      <div class="aroma br rv" style="--i:4"><div class="pic" data-s=".9"><div class="disc" style="--i:3"><svg role="img" aria-label=""><use href="#cannelle"/></svg></div></div><h3>Cannelle</h3><p>Une touche d'épices en finale</p>
+        <svg class="arrow" viewBox="0 0 100 60"><path pathLength="1" d="M4 12C35 2 72 12 90 48"/><path pathLength="1" d="M72 42l19 9 2-20"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<section class="rum" id="ans12" data-bg="#E5B878" data-fg="#24120A" style="--sbg:#E5B878;--sfg:#24120A;--ac:#8E2C12">
+  <div class="wrap">
+    <div class="rum-head">
+      <p class="eyebrow rv">Deuxième verre · Añejo Gran Reserva</p>
+      <h2 class="rv">Abuelo 12 ans</h2>
+      <div class="rule rv"></div>
+      <p class="rv">Cinq ans de plus en fût de chêne américain : plus sec, plus sombre, plus profond.</p>
+    </div>
+    <div class="stage">
+      <div class="aroma tl rv" style="--i:1"><div class="pic" data-s="-.5"><div class="disc" style="--i:0"><svg role="img" aria-label=""><use href="#cacao"/></svg></div></div><h3>Cacao</h3><p>La première note au nez</p>
+        <svg class="arrow" viewBox="0 0 100 60"><path pathLength="1" d="M4 12C35 2 72 12 90 48"/><path pathLength="1" d="M72 42l19 9 2-20"/></svg></div>
+      <div class="aroma tr rv" style="--i:2"><div class="pic" data-s="-.9"><div class="disc" style="--i:1"><svg role="img" aria-label=""><use href="#pruneau"/></svg></div></div><h3>Pruneau</h3><p>Fruit sec, sombre et confit</p>
+        <svg class="arrow" viewBox="0 0 100 60"><path pathLength="1" d="M4 12C35 2 72 12 90 48"/><path pathLength="1" d="M72 42l19 9 2-20"/></svg></div>
+      <div class="bottle"><div class="ghost" data-ghost>12</div><div class="glow"></div><div class="tilt" data-bottle><div class="float"><img src="img/abuelo-12.png" alt="Bouteille Ron Abuelo Añejo 12 ans" loading="lazy"></div></div></div>
+      <div class="aroma bl rv" style="--i:3"><div class="pic" data-s=".9"><div class="disc" style="--i:2"><svg role="img" aria-label=""><use href="#chene"/></svg></div></div><h3>Bois grillé</h3><p>Le chêne, avec une pointe de noix</p>
+        <svg class="arrow" viewBox="0 0 100 60"><path pathLength="1" d="M4 12C35 2 72 12 90 48"/><path pathLength="1" d="M72 42l19 9 2-20"/></svg></div>
+      <div class="aroma br rv" style="--i:4"><div class="pic" data-s=".5"><div class="disc" style="--i:3"><svg role="img" aria-label=""><use href="#orange"/></svg></div></div><h3>Zeste d'orange</h3><p>La fraîcheur en bouche</p>
+        <svg class="arrow" viewBox="0 0 100 60"><path pathLength="1" d="M4 12C35 2 72 12 90 48"/><path pathLength="1" d="M72 42l19 9 2-20"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<section class="rum" id="twooaks" data-bg="#3A2013" data-fg="#F4E7CF" style="--sbg:#3A2013;--sfg:#F4E7CF;--ac:#E3A94A">
+  <div class="wrap">
+    <div class="rum-head">
+      <p class="eyebrow rv">Troisième verre · Double Matured</p>
+      <h2 class="rv">XII Two Oaks</h2>
+      <div class="rule rv"></div>
+      <p class="rv">Deux chênes pour un seul rhum : il termine sa route en fût de chêne américain neuf, fortement brûlé.</p>
+    </div>
+    <div class="stage">
+      <div class="aroma tl rv" style="--i:1"><div class="pic" data-s="-.9"><div class="disc" style="--i:0"><svg role="img" aria-label=""><use href="#fumee"/></svg></div></div><h3>Fumée</h3><p>Légère, dès le nez</p>
+        <svg class="arrow" viewBox="0 0 100 60"><path pathLength="1" d="M4 12C35 2 72 12 90 48"/><path pathLength="1" d="M72 42l19 9 2-20"/></svg></div>
+      <div class="aroma tr rv" style="--i:2"><div class="pic" data-s="-.5"><div class="disc" style="--i:1"><svg role="img" aria-label=""><use href="#chene"/></svg></div></div><h3>Chêne</h3><p>Intense et boisé</p>
+        <svg class="arrow" viewBox="0 0 100 60"><path pathLength="1" d="M4 12C35 2 72 12 90 48"/><path pathLength="1" d="M72 42l19 9 2-20"/></svg></div>
+      <div class="bottle"><div class="ghost" data-ghost>XII</div><div class="glow"></div><div class="tilt" data-bottle><div class="float"><img src="img/abuelo-two-oaks.png" alt="Bouteille Ron Abuelo XII Two Oaks" loading="lazy"></div></div></div>
+      <div class="aroma bl rv" style="--i:3"><div class="pic" data-s=".5"><div class="disc" style="--i:2"><svg role="img" aria-label=""><use href="#cafe"/></svg></div></div><h3>Café</h3><p>Grains torréfiés en bouche</p>
+        <svg class="arrow" viewBox="0 0 100 60"><path pathLength="1" d="M4 12C35 2 72 12 90 48"/><path pathLength="1" d="M72 42l19 9 2-20"/></svg></div>
+      <div class="aroma br rv" style="--i:4"><div class="pic" data-s=".9"><div class="disc" style="--i:3"><svg role="img" aria-label=""><use href="#amande"/></svg></div></div><h3>Amande grillée</h3><p>Une touche discrète</p>
+        <svg class="arrow" viewBox="0 0 100 60"><path pathLength="1" d="M4 12C35 2 72 12 90 48"/><path pathLength="1" d="M72 42l19 9 2-20"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<section class="rum" id="napoleon" data-bg="#1E1017" data-fg="#F2E5D6" style="--sbg:#1E1017;--sfg:#F2E5D6;--ac:#BE93CF">
+  <div class="wrap">
+    <div class="rum-head">
+      <p class="eyebrow rv">Dernier verre · XV Finish Collection</p>
+      <h2 class="rv">XV Napoléon</h2>
+      <div class="rule rv"></div>
+      <p class="rv">Quinze ans, dont la fin de sa maturation en fûts ayant contenu du cognac Napoléon.</p>
+    </div>
+    <div class="stage">
+      <div class="aroma tl rv" style="--i:1"><div class="pic" data-s="-.5"><div class="disc" style="--i:0"><svg role="img" aria-label=""><use href="#raisin"/></svg></div></div><h3>Raisin</h3><p>L'héritage du fût de cognac</p>
+        <svg class="arrow" viewBox="0 0 100 60"><path pathLength="1" d="M4 12C35 2 72 12 90 48"/><path pathLength="1" d="M72 42l19 9 2-20"/></svg></div>
+      <div class="aroma tr rv" style="--i:2"><div class="pic" data-s="-.9"><div class="disc" style="--i:1"><svg role="img" aria-label=""><use href="#prune"/></svg></div></div><h3>Fruits d'automne</h3><p>Mûrs et généreux</p>
+        <svg class="arrow" viewBox="0 0 100 60"><path pathLength="1" d="M4 12C35 2 72 12 90 48"/><path pathLength="1" d="M72 42l19 9 2-20"/></svg></div>
+      <div class="bottle"><div class="ghost" data-ghost>XV</div><div class="glow"></div><div class="tilt" data-bottle><div class="float"><img src="img/abuelo-napoleon.png" alt="Bouteille Ron Abuelo XV Napoléon Cognac Cask Finish" loading="lazy"></div></div></div>
+      <div class="aroma bl rv" style="--i:3"><div class="pic" data-s=".9"><div class="disc" style="--i:2"><svg role="img" aria-label=""><use href="#chocolat"/></svg></div></div><h3>Chocolat noir</h3><p>Avec une pointe de chêne</p>
+        <svg class="arrow" viewBox="0 0 100 60"><path pathLength="1" d="M4 12C35 2 72 12 90 48"/><path pathLength="1" d="M72 42l19 9 2-20"/></svg></div>
+      <div class="aroma br rv" style="--i:4"><div class="pic" data-s=".5"><div class="disc" style="--i:3"><svg role="img" aria-label=""><use href="#vanille"/></svg></div></div><h3>Vanille</h3><p>Douce, pour finir longuement</p>
+        <svg class="arrow" viewBox="0 0 100 60"><path pathLength="1" d="M4 12C35 2 72 12 90 48"/><path pathLength="1" d="M72 42l19 9 2-20"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<section class="info" id="infos" data-bg="#DFB548" data-fg="#15120C" style="--sbg:#DFB548;--sfg:#15120C">
+  <div class="wrap">
+    <h2 class="rv">Réservez votre <em>13</em></h2>
+    <div class="count rv" id="count" aria-label="Temps restant avant la dégustation">
+      <div><b id="cd" style="font-weight:400">–</b><span>jours</span></div>
+      <div><b id="ch" style="font-weight:400">–</b><span>heures</span></div>
+      <div><b id="cm" style="font-weight:400">–</b><span>minutes</span></div>
+      <div><b id="cs" style="font-weight:400">–</b><span>secondes</span></div>
+    </div>
+    <div class="facts">
+      <div class="rv" style="--i:0"><h3>Quand</h3><p>Vendredi 13 novembre, dès 19 h</p><small>Animée par Melvyn Le Brumant</small></div>
+      <div class="rv" style="--i:1"><h3>Où</h3><p>40 rue de Bras, Caen</p></div>
+      <div class="rv" style="--i:2"><h3>Entrée</h3><p>10 €</p><small>Remboursable sur votre premier achat</small></div>
+      <div class="rv" style="--i:3"><h3>Réservation</h3>
+        <div class="res">
+          <span><a href="tel:+33231283313">02 31 28 33 13</a><button type="button" data-copy="02 31 28 33 13">Copier</button></span>
+          <span><a href="mailto:b.didier@ldqm-caen.com">b.didier@ldqm-caen.com</a><button type="button" data-copy="b.didier@ldqm-caen.com">Copier</button></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap"><p>L'abus d'alcool est dangereux pour la santé, à consommer avec modération.</p></div>
+</footer>
+
+<script>
+(function(){
+  var calm = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var root = document.documentElement;
+
+  // Apparitions au scroll
+  var rv = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:.18, rootMargin:'0px 0px -6% 0px'});
+    rv.forEach(function(el){ io.observe(el); });
+  } else rv.forEach(function(el){ el.classList.add('in'); });
+
+  // Couleur de fond interpolée entre les sections, parallaxe lissée
+  function hex(h){ return [1,3,5].map(function(i){ return parseInt(h.substr(i,2),16); }); }
+  function mix(a,b,t){ return 'rgb('+a.map(function(v,i){ return Math.round(v+(b[i]-v)*t); }).join(',')+')'; }
+  var secs = [].map.call(document.querySelectorAll('section[data-bg]'), function(el){
+    return {el:el, bg:hex(el.dataset.bg), fg:hex(el.dataset.fg)};
+  });
+  var rums = [].map.call(document.querySelectorAll('.rum'), function(el){
+    return {el:el, bottle:el.querySelector('[data-bottle]'), ghost:el.querySelector('[data-ghost]'), pics:el.querySelectorAll('[data-s]')};
+  });
+  var links = document.querySelectorAll('.gauge a');
+  var gauge = document.querySelector('.gauge');
+  var y = scrollY, cur = y, tops = [], vh = innerHeight;
+
+  function measure(){
+    vh = innerHeight;
+    tops = secs.map(function(s){ var r = s.el.getBoundingClientRect(); return r.top + scrollY + r.height/2; });
+    rums.forEach(function(r){ var b = r.el.getBoundingClientRect(); r.mid = b.top + scrollY + b.height/2; });
+  }
+  function paint(){
+    var c = cur + vh/2, i = 0;
+    while (i < tops.length-2 && c > tops[i+1]) i++;
+    var t = Math.max(0, Math.min(1, (c-tops[i])/(tops[i+1]-tops[i])));
+    t = t*t*(3-2*t);
+    var bg = mix(secs[i].bg, secs[i+1].bg, t), fg = mix(secs[i].fg, secs[i+1].fg, t);
+    root.style.setProperty('--bg', bg);
+    root.style.setProperty('--fg', fg);
+    var on = t > .5 ? i+1 : i;
+    links.forEach(function(a,n){ a.classList.toggle('on', n === on-1); });
+    gauge.style.setProperty('--fill', Math.min(1, cur/(document.documentElement.scrollHeight-vh)));
+    if (calm) return;
+    rums.forEach(function(r){
+      var p = (c - r.mid)/vh;
+      if (Math.abs(p) > 1.6) return;
+      r.bottle.style.setProperty('--by', (-p*46).toFixed(1)+'px');
+      r.bottle.style.setProperty('--br', (p*-7).toFixed(2)+'deg');
+      r.bottle.style.setProperty('--bs', (1-Math.min(.14,Math.abs(p)*.14)).toFixed(3));
+      r.ghost.style.setProperty('--gy', (p*150).toFixed(1)+'px');
+      r.pics.forEach(function(el){ el.style.setProperty('--py', (p*el.dataset.s*-46).toFixed(1)+'px'); });
+    });
+  }
+  var ticking = false, last = 0;
+  function loop(now){
+    // Lissage indépendant de la fréquence d'images
+    var dt = Math.min(1000, now-last); last = now;
+    cur += (y-cur)*(calm ? 1 : 1-Math.exp(-dt/130));
+    paint();
+    if (Math.abs(y-cur) > .3) requestAnimationFrame(loop);
+    else { cur = y; paint(); ticking = false; }
+  }
+  function kick(){ if (!ticking) { ticking = true; last = performance.now(); requestAnimationFrame(loop); } }
+  addEventListener('scroll', function(){ y = scrollY; kick(); }, {passive:true});
+  addEventListener('resize', function(){ measure(); kick(); });
+  addEventListener('load', function(){ measure(); kick(); });
+  measure(); paint();
+
+  // Les bouteilles du haut suivent légèrement la souris
+  var lineup = document.getElementById('lineup');
+  if (!calm && matchMedia('(hover:hover)').matches) {
+    addEventListener('mousemove', function(e){ lineup.style.setProperty('--mx', ((e.clientX/innerWidth)-.5).toFixed(3)); }, {passive:true});
+  }
+
+  // La bouteille se penche vers l'arôme survolé
+  document.querySelectorAll('.stage').forEach(function(st){
+    var tilt = st.querySelector('.float');
+    tilt.style.transition = 'rotate .7s cubic-bezier(.2,.8,.2,1)';
+    st.querySelectorAll('.aroma').forEach(function(a){
+      var left = a.classList.contains('tl') || a.classList.contains('bl');
+      a.addEventListener('mouseenter', function(){ tilt.style.rotate = (left ? -5 : 5)+'deg'; });
+      a.addEventListener('mouseleave', function(){ tilt.style.rotate = '0deg'; });
+    });
+  });
+
+  // Compte à rebours
+  var target = new Date(2026,10,13,19,0,0).getTime();
+  var box = document.getElementById('count');
+  function pad(n){ return (n<10?'0':'')+n; }
+  function tick(){
+    var s = Math.floor((target-Date.now())/1000);
+    if (s <= 0) { box.hidden = true; box.style.display = 'none'; return; }
+    document.getElementById('cd').textContent = Math.floor(s/86400);
+    document.getElementById('ch').textContent = pad(Math.floor(s%86400/3600));
+    document.getElementById('cm').textContent = pad(Math.floor(s%3600/60));
+    document.getElementById('cs').textContent = pad(s%60);
+    setTimeout(tick,1000);
+  }
+  tick();
+
+  // Copier téléphone et e-mail
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    b.addEventListener('click', function(){
+      function done(msg){ b.textContent = msg; setTimeout(function(){ b.textContent = 'Copier'; },1800); }
+      if (navigator.clipboard) navigator.clipboard.writeText(b.dataset.copy).then(function(){ done('Copié'); }, function(){ done('Sélectionnez le texte'); });
+      else done('Sélectionnez le texte');
+    });
+  });
+
+  // Poussières dorées qui remontent comme dans un verre
+  if (calm) return;
+  var cv = document.getElementById('dust'), cx = cv.getContext('2d'), W, H, dots = [];
+  function size(){ var d = Math.min(devicePixelRatio||1,2); W = innerWidth; H = innerHeight; cv.width = W*d; cv.height = H*d; cx.setTransform(d,0,0,d,0,0); }
+  size(); addEventListener('resize', size);
+  for (var n = 0; n < (innerWidth < 720 ? 18 : 42); n++) dots.push({x:Math.random(), y:Math.random(), r:1+Math.random()*3, v:.00025+Math.random()*.0006, ph:Math.random()*6.3});
+  (function draw(t){
+    cx.clearRect(0,0,W,H);
+    cx.fillStyle = 'rgba(190,120,30,.38)';
+    dots.forEach(function(d){
+      d.y -= d.v; if (d.y < -.02) d.y = 1.02;
+      var px = d.x*W + Math.sin(t/1800+d.ph)*16;
+      cx.beginPath(); cx.arc(px, d.y*H, d.r, 0, 6.3); cx.fill();
+    });
+    requestAnimationFrame(draw);
+  })(0);
+})();
+</script>
+
+</body>
+</html>
